@@ -1,0 +1,16 @@
+#main_nav{
+  .bg-main{
+    background-color: $main_color;
+  }
+
+  .btn-default {
+    color: $default_text_color;
+    border-color: $default_text_color;
+    &:hover{
+      color: #fff;
+      background-color: $sub_color--dark;
+      border-color: $sub_color--dark;
+    }
+}
+
+}
