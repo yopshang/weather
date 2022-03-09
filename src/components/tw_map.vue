@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import * as d3 from 'd3';
 import map_data from '../json/COUNTY_MOI_1090820.json'
 export default {
   name: 'tw-map',
@@ -24,21 +23,34 @@ export default {
       h1: '',
       h2: '',
       map_data,
-      d3: d3
     }
   },
   components: {
   },
   methods:{
       init_map(){
-        console.log('draw map:', this.d3);
-        // 座標變換函式
-
-
+        var path = d3.geo.path().projection(
+        d3.geo
+          .mercator()
+          .center([121, 24])
+          .scale(1)
+          .translate([768/2, 800/2.5])
+      );
       },
+      use_d3(){
+        var that = this;
+        var scriptTag = document.createElement("script");
+        scriptTag.src = "https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js";
+        scriptTag.id = "d3";
+        document.getElementsByTagName('head')[0].appendChild(scriptTag);
+        setTimeout(function(){
+          that.init_map()
+        },500)
+      }
   },
   mounted(){
-    this.init_map();
+    this.use_d3();
+
   }
 }
 </script>
