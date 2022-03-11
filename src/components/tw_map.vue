@@ -1,31 +1,27 @@
 <template>
     <div id="TW_map">
       <div class="taivan-map" ref="map">
-      <div id="map">
-        <svg id="svg"
-          >
-        </svg>
-      </div>
-      <div class="shop-list">
-        <h1>{{h1}}</h1>
-        <h2>{{h2}}</h2>
-      </div>
+        <div id="map">
+          <svg id="svg"
+            >
+          </svg>
+        </div>
+        <div class="shop-list">
+          <h1>{{h1}}</h1>
+          <h2>{{h2}}</h2>
+        </div>
 
       </div>
     </div>
 </template>
 
 <script>
-// import newData from '../../static/COUNTY_MOI_1090820 (2).json';
 export default {
   name: 'tw-map',
   data(){
     return {
       h1: '',
       h2: '',
-      // newData,
-      width: window.screen.width,
-      height: window.screen.height,
       sampleData: []
     }
   },
@@ -80,8 +76,8 @@ export default {
               document.getElementById('city' + d.properties.COUNTYCODE).classList.add('active');
             });
         });
-
       },
+      trans
       use_d3(){
         var that = this;
         var scriptTag = document.createElement("script");
@@ -102,5 +98,19 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import '../assets/sass/main.scss';
-
+#map{
+  height: 1000px;
+  fill: transparent;
+  stroke: black;
+}
+  #map path.active {
+    stroke: red;
+  }
+  // .taivan-map {
+  //   display: flex;
+  //   #map,
+  //   .shop-list {
+  //     width: 50%;
+  //   }
+  // }
 </style>

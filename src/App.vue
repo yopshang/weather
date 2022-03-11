@@ -1,14 +1,17 @@
 <template>
   <div>
     <mainNav></mainNav>
-    <!-- <div class="container">
+    <div class="container">
       <div class="row">
-        <div class="col-8"> -->
+        <div class="col-8">
           <twMap ></twMap >
-        <!-- </div>
-      </div> -->
+        </div>
+        <div class="col-4">
+          test
+        </div>
+      </div>
 
-    <!-- </div> -->
+    </div>
   </div>
 </template>
 
