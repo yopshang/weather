@@ -77,7 +77,6 @@ export default {
             });
         });
       },
-      trans
       use_d3(){
         var that = this;
         var scriptTag = document.createElement("script");
