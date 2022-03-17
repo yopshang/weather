@@ -2,9 +2,6 @@
   <div id="TW_map">
     <div class="taivan-map" ref="map">
       <div id="map">
-        <!-- <svg id="svg"
-            >
-          </svg> -->
         <svg
           id="svg"
           xmlns="http://www.w3.org/2000/svg"
@@ -15,10 +12,6 @@
         >
           <path v-for="(path, i) in country_data" :d="path.d" :id="path.id" :key="i" @click="get_active(path.name)"></path>
         </svg>
-      </div>
-      <div class="shop-list">
-        <h1>{{ h1 }}</h1>
-        <h2>{{ h2 }}</h2>
       </div>
     </div>
   </div>
@@ -148,7 +141,8 @@ export default {
       });
     },
     get_active(country){
-      console.log(country);
+      // console.log(country);
+      this.$emit('get_active', country); 
     }
   },
   mounted() {

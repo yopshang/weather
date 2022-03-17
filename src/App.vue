@@ -4,10 +4,10 @@
     <div class="container">
       <div class="row">
         <div class="col-8">
-          <twMap ></twMap >
+          <twMap @get_active="get_active"></twMap >
         </div>
         <div class="col-4">
-          test
+          <h1>{{country}}</h1>
         </div>
       </div>
 
@@ -23,7 +23,17 @@ export default {
   components: {
     mainNav,
     twMap 
-  }
+  },
+  data(){
+    return {
+      country: ''
+    }
+  },
+  methods: {
+    get_active(country){
+      this.country = country;
+    }
+  },
 }
 </script>
 
