@@ -23,7 +23,28 @@ export default {
     return {
       h1: '',
       h2: '',
-      sampleData: []
+      sampleData: [],
+      country_data:[
+        {id:'city10002', name:'宜蘭'},
+        {id:'city10007', name: '彰化'},
+        {id:'city10008', name: '南投縣'},
+        {id: 'city10009', name: '雲林縣'},
+        {id: 'city10013', name: '屏東縣'},
+        {id: 'city10017', name: '基隆市'},
+        {id: 'city10018', name: '新竹市'},
+        {id: 'city63000', name: '台北市'},
+        {id: 'city65000', name: '新北市'},
+        {id: 'city66000', name: '台南市'},
+        {id: 'city67000', name: '台中市'},
+        {id: 'city68000', name: '桃園市'},
+        {id: 'city10005', name: '苗栗縣'},
+        {id: 'city10004', name: '新竹縣'},
+        {id: 'city10020', name: '嘉義市'},
+        {id: 'city10010', name: '嘉義縣'},
+        {id: 'city64000', name: '高雄市'},
+        {id: 'city10014', name: '台東縣'},
+        {id: 'city10015', name: '花蓮縣'}
+      ]
     }
   },
   components: {
@@ -106,7 +127,9 @@ export default {
         all_path.forEach(function(item, i){
           item.classList.remove("active");
         })
-
+      },
+      get_each_country(){
+        
       }
   },
   mounted(){
@@ -124,11 +147,17 @@ export default {
   fill: transparent;
   stroke: black;
 }
-  #map path.active {
-    stroke: red;
-  }
-  .active {
-    fill: red;
+  #map path {
+    transition: all .3s;
+    cursor: pointer;
+    &.active {
+      stroke: $main_color--dark;
+      transform: translateY(-6px);
+      fill: $main_color--dark;
+    }
+    &:hover {
+      fill: $main_color;
+    }
   }
   // .taivan-map {
   //   display: flex;
