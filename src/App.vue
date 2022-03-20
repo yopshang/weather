@@ -9,6 +9,7 @@
         <div class="col-4">
           <h1>{{title}}</h1>
           <h2>{{country_name}}</h2>
+
           <div id="wx_area">
             <h3>氣候:{{wx.elementName}}</h3>
             <div v-for="(time, i) in wx.time" :key="i">
@@ -16,12 +17,47 @@
               <h4>結束時間:{{time.endTime}}</h4>
               <h4>氣候狀態:{{time.parameter.parameterName}}</h4>
               <h4>氣候程度:{{time.parameter.parameterValue}}</h4>
-              </div>
+            </div>
           </div>
-            <!-- <h3>降雨率:{{POP}}</h3>
-            <h3>最低溫:{{MinT}}</h3>
-            <h3>舒適度:{{CI}}</h3>
-            <h3>最高溫:{{MaxT}}</h3> -->
+
+          <div id="POP_area">
+            <h3>降雨率:{{POP.elementName}}</h3>
+            <div v-for="(time, i) in POP.time" :key="i">
+              <h4>開始時間:{{time.startTime}}</h4>
+              <h4>結束時間:{{time.endTime}}</h4>
+              <h4>降雨機率:{{time.parameter.parameterName}}{{time.parameter.parameterUnit == '百分比'?'%':time.parameter.parameterUnit}}</h4>
+            </div>
+          </div>
+
+          <div id="MinT_area">
+            <h3>降雨率:{{MinT.elementName}}</h3>
+            <div v-for="(time, i) in MinT.time" :key="i">
+              <h4>開始時間:{{time.startTime}}</h4>
+              <h4>結束時間:{{time.endTime}}</h4>
+              <h4>最低溫度:{{time.parameter.parameterName+'度'+time.parameter.parameterUnit}}</h4>
+            </div>
+          </div>
+
+          <div id="CI_area">
+            <h3>舒適度:{{CI.elementName}}</h3>
+            <div v-for="(time, i) in CI.time" :key="i">
+              <h4>開始時間:{{time.startTime}}</h4>
+              <h4>結束時間:{{time.endTime}}</h4>
+              <h4>最低溫度:{{time.parameter.parameterName}}</h4>
+            </div>
+          </div>
+
+          <div id="ＭaxT_area">
+            <h3>最高溫度:{{ＭaxT.elementName}}</h3>
+            <div v-for="(time, i) in ＭaxT.time" :key="i">
+              <h4>開始時間:{{time.startTime}}</h4>
+              <h4>結束時間:{{time.endTime}}</h4>
+              <h4>最高溫度:{{time.parameter.parameterName}}</h4>
+            </div>
+          </div>
+
+
+
         </div>
       </div>
 
@@ -44,10 +80,10 @@ export default {
       title: '',
       countries:[],
       wx:{}, // 氣候
-      POP: '', // 降雨率
-      MinT: '', //最低溫
-      CI: '', //舒適度
-      ＭaxT: '', //最高溫
+      POP: {}, // 降雨率
+      MinT: {}, //最低溫
+      CI: {}, //舒適度
+      ＭaxT: {}, //最高溫
 
     }
   },
@@ -77,39 +113,22 @@ export default {
       this.title = title;
     },
     get_active_data_of_country(country){
-      // var country_name = this.country_name;'
       var that = this;
       var countries = this.countries;
       countries.forEach(function(item, i){
-        // console.log(of_this_country);
         if(item.locationName == country){
-          console.log('country:', country, item.weatherElement[0]);
           setTimeout(function(){
             that.wx = item.weatherElement[0];
+            that.POP = item.weatherElement[1];
+            that.MinT = item.weatherElement[2];
+            that.CI = item.weatherElement[3];
+            that.MaxT = item.weatherElement[4];
+            console.log('country:',that.MaxT,  country, item.weatherElement[4]);
           }, 0);
-          // this.wx = item.weatherElement[0];
-          // this.POP = item.weatherElement[1];
-          // this.MinT = item.weatherElement[2];
-          // this.CI = item.weatherElement[3];
-          // this.MaxT = item.weatherElement[4];
-          // console.log(this.wx);
           // [0] wx氣候 [1]Pop降雨率  [2] MinT最低溫 [3]CI舒適度  [4]ＭaxT最高溫
         }
       })
-    },
-    // wx_handler(data){
-    //   var startTime = data.startTime;
-    //   var endTime = data.endTime;
-    //   var parameterName = wx_handler_time_handler(data.time);
-    //   var parameterValue = data.time.parameter.parameterValue;
-    //   console.log(startTime, endTime, parameterName, parameterValue);
-    // },
-    // wx_handler_time_handler(data){
-    //   data.forEach((item,i)=>{
-    //     item.startTime
-    //   })
-    // }
-
+    }
   },
   created(){
     this.get_wather_data();
