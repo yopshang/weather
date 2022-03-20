@@ -9,13 +9,19 @@
         <div class="col-4">
           <h1>{{title}}</h1>
           <h2>{{country_name}}</h2>
-          <div>
-            <h3>氣候:{{wx}}</h3>
-            <h3>降雨率:{{POP}}</h3>
+          <div id="wx_area">
+            <h3>氣候:{{wx.elementName}}</h3>
+            <div v-for="(time, i) in wx.time" :key="i">
+              <h4>開始時間:{{time.startTime}}</h4>
+              <h4>結束時間:{{time.endTime}}</h4>
+              <h4>氣候狀態:{{time.parameter.parameterName}}</h4>
+              <h4>氣候程度:{{time.parameter.parameterValue}}</h4>
+              </div>
+          </div>
+            <!-- <h3>降雨率:{{POP}}</h3>
             <h3>最低溫:{{MinT}}</h3>
             <h3>舒適度:{{CI}}</h3>
-            <h3>最高溫:{{MaxT}}</h3>
-          </div>
+            <h3>最高溫:{{MaxT}}</h3> -->
         </div>
       </div>
 
@@ -37,7 +43,7 @@ export default {
       country_name: '',
       title: '',
       countries:[],
-      wx:'', // 氣候
+      wx:{}, // 氣候
       POP: '', // 降雨率
       MinT: '', //最低溫
       CI: '', //舒適度
@@ -79,7 +85,7 @@ export default {
         if(item.locationName == country){
           console.log('country:', country, item.weatherElement[0]);
           setTimeout(function(){
-            that.wx_handler(item.weatherElement[0]);
+            that.wx = item.weatherElement[0];
           }, 0);
           // this.wx = item.weatherElement[0];
           // this.POP = item.weatherElement[1];
@@ -91,9 +97,18 @@ export default {
         }
       })
     },
-    wx_handler(data){
-      console.log(data);
-    }
+    // wx_handler(data){
+    //   var startTime = data.startTime;
+    //   var endTime = data.endTime;
+    //   var parameterName = wx_handler_time_handler(data.time);
+    //   var parameterValue = data.time.parameter.parameterValue;
+    //   console.log(startTime, endTime, parameterName, parameterValue);
+    // },
+    // wx_handler_time_handler(data){
+    //   data.forEach((item,i)=>{
+    //     item.startTime
+    //   })
+    // }
 
   },
   created(){
