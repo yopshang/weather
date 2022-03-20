@@ -9,6 +9,13 @@
         <div class="col-4">
           <h1>{{title}}</h1>
           <h2>{{country_name}}</h2>
+          <div>
+            <h3>氣候:{{wx}}</h3>
+            <h3>降雨率:{{POP}}</h3>
+            <h3>最低溫:{{MinT}}</h3>
+            <h3>舒適度:{{CI}}</h3>
+            <h3>最高溫:{{MaxT}}</h3>
+          </div>
         </div>
       </div>
 
@@ -29,7 +36,13 @@ export default {
     return {
       country_name: '',
       title: '',
-      countries:[]
+      countries:[],
+      wx:'', // 氣候
+      POP: '', // 降雨率
+      MinT: '', //最低溫
+      CI: '', //舒適度
+      ＭaxT: '', //最高溫
+
     }
   },
   methods: {
@@ -58,17 +71,28 @@ export default {
       this.title = title;
     },
     get_active_data_of_country(country){
-      // var country_name = this.country_name;
+      // var country_name = this.country_name;'
+      var that = this;
       var countries = this.countries;
       countries.forEach(function(item, i){
         // console.log(of_this_country);
         if(item.locationName == country){
-          console.log('country:', country);
+          console.log('country:', country, item.weatherElement[0]);
+          setTimeout(function(){
+            that.wx_handler(item.weatherElement[0]);
+          }, 0);
+          // this.wx = item.weatherElement[0];
+          // this.POP = item.weatherElement[1];
+          // this.MinT = item.weatherElement[2];
+          // this.CI = item.weatherElement[3];
+          // this.MaxT = item.weatherElement[4];
+          // console.log(this.wx);
+          // [0] wx氣候 [1]Pop降雨率  [2] MinT最低溫 [3]CI舒適度  [4]ＭaxT最高溫
         }
       })
     },
-    active(weatherElement){
-
+    wx_handler(data){
+      console.log(data);
     }
 
   },
