@@ -16,15 +16,8 @@
           <POP :POP_data="POP"></POP>
           <!-- 最小溫度 -->
           <MinT :MinT_data="MinT"></MinT>
-
-          <div id="CI_area">
-            <h3>舒適度:{{CI.elementName}}</h3>
-            <div v-for="(time, i) in CI.time" :key="i">
-              <h4>開始時間:{{time.startTime}}</h4>
-              <h4>結束時間:{{time.endTime}}</h4>
-              <h4>最低溫度:{{time.parameter.parameterName}}</h4>
-            </div>
-          </div>
+          <!-- 舒適度 -->
+          <CI :CI_data="CI"></CI>
 
           <div id="ＭaxT_area">
             <h3>最高溫度:{{maxT.elementName}}</h3>
@@ -50,6 +43,7 @@ import twMap from './components/tw_map.vue';
 import wx from './components/wx.vue';
 import POP from './components/POP.vue';
 import MinT from './components/MinT.vue';
+import CI from './components/CI.vue';
 export default {
   name: 'App',
   components: {
@@ -57,7 +51,8 @@ export default {
     twMap,
     wx,
     POP,
-    MinT
+    MinT,
+    CI
   },
   data(){
     return {
