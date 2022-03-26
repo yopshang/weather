@@ -48,8 +48,8 @@
           </div>
 
           <div id="ＭaxT_area">
-            <h3>最高溫度:{{ＭaxT.elementName}}</h3>
-            <div v-for="(time, i) in ＭaxT.time" :key="i">
+            <h3>最高溫度:{{maxT.elementName}}</h3>
+            <div v-for="(time, i) in maxT.time" :key="i">
               <h4>開始時間:{{time.startTime}}</h4>
               <h4>結束時間:{{time.endTime}}</h4>
               <h4>最高溫度:{{time.parameter.parameterName}}</h4>
@@ -83,7 +83,7 @@ export default {
       POP: {}, // 降雨率
       MinT: {}, //最低溫
       CI: {}, //舒適度
-      ＭaxT: {}, //最高溫
+      maxT: {}, //最高溫
 
     }
   },
@@ -122,8 +122,8 @@ export default {
             that.POP = item.weatherElement[1];
             that.MinT = item.weatherElement[2];
             that.CI = item.weatherElement[3];
-            that.MaxT = item.weatherElement[4];
-            console.log('country:',that.MaxT,  country, item.weatherElement[4]);
+            that.maxT = item.weatherElement[4];
+            // console.log('country:', item.weatherElement[4]);
           }, 0);
           // [0] wx氣候 [1]Pop降雨率  [2] MinT最低溫 [3]CI舒適度  [4]ＭaxT最高溫
         }
