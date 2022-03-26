@@ -18,18 +18,9 @@
           <MinT :MinT_data="MinT"></MinT>
           <!-- 舒適度 -->
           <CI :CI_data="CI"></CI>
-
-          <div id="ＭaxT_area">
-            <h3>最高溫度:{{maxT.elementName}}</h3>
-            <div v-for="(time, i) in maxT.time" :key="i">
-              <h4>開始時間:{{time.startTime}}</h4>
-              <h4>結束時間:{{time.endTime}}</h4>
-              <h4>最高溫度:{{time.parameter.parameterName}}</h4>
-            </div>
-          </div>
-
-
-
+          <!-- 最高溫度 -->
+          <maxT :maxT_data="maxT"></maxT>
+          
         </div>
       </div>
 
@@ -44,6 +35,7 @@ import wx from './components/wx.vue';
 import POP from './components/POP.vue';
 import MinT from './components/MinT.vue';
 import CI from './components/CI.vue';
+import maxT from './components/maxT.vue';
 export default {
   name: 'App',
   components: {
@@ -52,7 +44,8 @@ export default {
     wx,
     POP,
     MinT,
-    CI
+    CI,
+    maxT
   },
   data(){
     return {
