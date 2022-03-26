@@ -12,24 +12,10 @@
 
           <!-- 氣候 -->
           <wx :wx_data="wx"></wx>
+          <!-- 降雨率 -->
           <POP :POP_data="POP"></POP>
-          <!-- <div id="POP_area">
-            <h3>降雨率:{{POP.elementName}}</h3>
-            <div v-for="(time, i) in POP.time" :key="i">
-              <h4>開始時間:{{time.startTime}}</h4>
-              <h4>結束時間:{{time.endTime}}</h4>
-              <h4>降雨機率:{{time.parameter.parameterName}}{{time.parameter.parameterUnit == '百分比'?'%':time.parameter.parameterUnit}}</h4>
-            </div>
-          </div> -->
-
-          <div id="MinT_area">
-            <h3>降雨率:{{MinT.elementName}}</h3>
-            <div v-for="(time, i) in MinT.time" :key="i">
-              <h4>開始時間:{{time.startTime}}</h4>
-              <h4>結束時間:{{time.endTime}}</h4>
-              <h4>最低溫度:{{time.parameter.parameterName+'度'+time.parameter.parameterUnit}}</h4>
-            </div>
-          </div>
+          <!-- 最小溫度 -->
+          <MinT :MinT_data="MinT"></MinT>
 
           <div id="CI_area">
             <h3>舒適度:{{CI.elementName}}</h3>
@@ -62,14 +48,16 @@
 import mainNav from './components/nav.vue';
 import twMap from './components/tw_map.vue';
 import wx from './components/wx.vue';
-import POP from './components/POP.vue'
+import POP from './components/POP.vue';
+import MinT from './components/MinT.vue';
 export default {
   name: 'App',
   components: {
     mainNav,
     twMap,
     wx,
-    POP
+    POP,
+    MinT
   },
   data(){
     return {
