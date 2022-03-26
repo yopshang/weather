@@ -10,15 +10,8 @@
           <h1>{{title}}</h1>
           <h2>{{country_name}}</h2>
 
-          <div id="wx_area">
-            <h3>氣候:{{wx.elementName}}</h3>
-            <div v-for="(time, i) in wx.time" :key="i">
-              <h4>開始時間:{{time.startTime}}</h4>
-              <h4>結束時間:{{time.endTime}}</h4>
-              <h4>氣候狀態:{{time.parameter.parameterName}}</h4>
-              <h4>氣候程度:{{time.parameter.parameterValue}}</h4>
-            </div>
-          </div>
+          <!-- 氣候 -->
+          <wx :wx_data="wx"></wx>
 
           <div id="POP_area">
             <h3>降雨率:{{POP.elementName}}</h3>
@@ -68,11 +61,13 @@
 <script>
 import mainNav from './components/nav.vue';
 import twMap from './components/tw_map.vue';
+import wx from './components/wx.vue';
 export default {
   name: 'App',
   components: {
     mainNav,
-    twMap 
+    twMap,
+    wx
   },
   data(){
     return {
