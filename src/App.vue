@@ -11,7 +11,11 @@
           <h2>{{country_name}}</h2>
 
           <!-- 氣候 -->
-          <wx :wx_data="wx"></wx>
+          <wx
+            :wx_data="wx"
+            :countries="countries"
+            :current_country="country_name"
+            ></wx>
           <!-- 降雨率 -->
           <POP :POP_data="POP"></POP>
           <!-- 最小溫度 -->
