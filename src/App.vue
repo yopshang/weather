@@ -20,7 +20,7 @@
                   <span>氣候</span>
                   <span>{{time.parameter.parameterName}}</span>
                   <span>{{time.parameter.parameterValue}}</span>
-                </h4>
+                </h4> 
 
 
                 <div class="area_time">
