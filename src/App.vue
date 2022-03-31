@@ -22,19 +22,19 @@
 
           <div id="POP_area">
             <!-- <h3>降雨率:{{POP.elementName}}</h3> -->
-            <div class="POP_area_wrapper">
-              <div class="POP_area_section" :style="`background:rgba(0, 102, 204, ${time.parameter.parameterName/100})`" v-for="(time, i) in POP.time" :key="i">
+            <div class="area_wrapper">
+              <div class="area_section" :style="`background:rgba(0, 102, 204, ${time.parameter.parameterName/100})`" v-for="(time, i) in POP.time" :key="i">
 
-                <h4 class="POP_area_rating">
+                <h4 class="area_rating">
                   <span>降雨機率</span>
                   <span>
                     {{time.parameter.parameterName}}{{time.parameter.parameterUnit == '百分比'?'%':time.parameter.parameterUnit}}
                   </span>
                 </h4>
-                <div class="POP_area_time">
-                  <span class="POP_area_starTime">{{time.startTime}}</span>
+                <div class="area_time">
+                  <span class="area_starTime">{{time.startTime}}</span>
                   <span>|</span>
-                  <span class="POP_area_endTime">{{time.endTime}}</span>
+                  <span class="area_endTime">{{time.endTime}}</span>
                 </div>
 
               </div>
@@ -42,12 +42,28 @@
           </div>
 
           <div id="MinT_area">
-            <h3>降雨率:{{MinT.elementName}}</h3>
-            <div v-for="(time, i) in MinT.time" :key="i">
-              <h4>開始時間:{{time.startTime}}</h4>
-              <h4>結束時間:{{time.endTime}}</h4>
-              <h4>最低溫度:{{time.parameter.parameterName+'度'+time.parameter.parameterUnit}}</h4>
+            <!-- <h3>最小溫度:{{MinT.elementName}}</h3> -->
+            <div class="area_wrapper">
+              <div class="area_section" :style="`background:rgba(232, 168, 124, ${time.parameter.parameterName/40})`"  v-for="(time, i) in MinT.time" :key="i">
+
+                <h4 class="area_rating">
+                    <span>最低溫度</span>
+                    <span>
+                      {{time.parameter.parameterName+'度'+time.parameter.parameterUnit}}
+                    </span>
+                </h4>
+
+                <div class="area_time">
+                  <span class="area_starTime">{{time.startTime}}</span>
+                  <span>|</span>
+                  <span class="area_endTime">{{time.endTime}}</span>
+                </div>
+              </div>
+
+
             </div>
+
+
           </div>
 
           <div id="CI_area">
@@ -59,18 +75,35 @@
             </div>
           </div>
 
-          <div id="ＭaxT_area">
-            <h3>最高溫度:{{ＭaxT.elementName}}</h3>
-            <div v-for="(time, i) in ＭaxT.time" :key="i">
-              <h4>開始時間:{{time.startTime}}</h4>
-              <h4>結束時間:{{time.endTime}}</h4>
-              <h4>最高溫度:{{time.parameter.parameterName}}</h4>
+
+            <div id="maxT_area">
+                <!-- <h3>最小溫度:{{MinT.elementName}}</h3> -->
+                <div class="area_wrapper">
+                  <div class="area_section" :style="`background:rgba(232, 168, 124, ${time.parameter.parameterName/40})`"  v-for="(time, i) in maxT.time" :key="i">
+
+                    <h4 class="area_rating">
+                        <span>最高溫度</span>
+                        <span>
+                          {{time.parameter.parameterName+'度'+time.parameter.parameterUnit}}
+                        </span>
+                    </h4>
+
+                    <div class="area_time">
+                      <span class="area_starTime">{{time.startTime}}</span>
+                      <span>|</span>
+                      <span class="area_endTime">{{time.endTime}}</span>
+                    </div>
+                  </div>
+
+
+                </div>
+
+
+
             </div>
+
           </div>
 
-
-
-        </div>
       </div>
 
     </div>
@@ -95,7 +128,7 @@ export default {
       POP: {}, // 降雨率
       MinT: {}, //最低溫
       CI: {}, //舒適度
-      ＭaxT: {}, //最高溫
+      maxT: {}, //最高溫
 
     }
   },
@@ -134,8 +167,8 @@ export default {
             that.POP = item.weatherElement[1];
             that.MinT = item.weatherElement[2];
             that.CI = item.weatherElement[3];
-            that.MaxT = item.weatherElement[4];
-            console.log('country:',that.MaxT,  country, item.weatherElement[4]);
+            that.maxT = item.weatherElement[4];
+            // console.log('country:',that.maxT,  country, item.weatherElement[4]);
           }, 0);
           // [0] wx氣候 [1]Pop降雨率  [2] MinT最低溫 [3]CI舒適度  [4]ＭaxT最高溫
         }
@@ -148,6 +181,6 @@ export default {
 }
 </script>
 
-<style scope lang="scss">
+<style lang="scss">
 @import './assets/sass/main.scss';
 </style>
