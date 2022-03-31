@@ -1,10 +1,8 @@
 #POP_area{
-  background-color: grey;  // for dev
-
+  // background-color: grey;  // for dev
+  border-radius: 5px;
   .POP_area_wrapper {
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
+  
     .POP_area_section {
       display: flex;
       align-items: center;
