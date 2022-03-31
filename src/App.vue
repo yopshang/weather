@@ -25,7 +25,12 @@
             <div class="POP_area_wrapper">
               <div class="POP_area_section" :style="`background:rgba(0, 102, 204, ${time.parameter.parameterName/100})`" v-for="(time, i) in POP.time" :key="i">
 
-                <h4 class="POP_area_rating">降雨機率:{{time.parameter.parameterName}}{{time.parameter.parameterUnit == '百分比'?'%':time.parameter.parameterUnit}}</h4>
+                <h4 class="POP_area_rating">
+                  <span>降雨機率</span>
+                  <span>
+                    {{time.parameter.parameterName}}{{time.parameter.parameterUnit == '百分比'?'%':time.parameter.parameterUnit}}
+                  </span>
+                </h4>
                 <div class="POP_area_time">
                   <span class="POP_area_starTime">{{time.startTime}}</span>
                   <span>|</span>
