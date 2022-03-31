@@ -21,11 +21,16 @@
           </div>
 
           <div id="POP_area">
-            <h3>降雨率:{{POP.elementName}}</h3>
-            <div v-for="(time, i) in POP.time" :key="i">
-              <h4>開始時間:{{time.startTime}}</h4>
-              <h4>結束時間:{{time.endTime}}</h4>
-              <h4>降雨機率:{{time.parameter.parameterName}}{{time.parameter.parameterUnit == '百分比'?'%':time.parameter.parameterUnit}}</h4>
+            <!-- <h3>降雨率:{{POP.elementName}}</h3> -->
+            <div class="POP_area_wrapper">
+              <div class="POP_area_section" v-for="(time, i) in POP.time" :key="i">
+                <h4 class="POP_area_rating">降雨機率:{{time.parameter.parameterName}}{{time.parameter.parameterUnit == '百分比'?'%':time.parameter.parameterUnit}}</h4>
+                <div class="POP_area_time">
+                  <span class="POP_area_starTime">{{time.startTime}}</span>
+                  <span>|</span>
+                  <span class="POP_area_endTime">{{time.endTime}}</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -136,6 +141,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
-
+<style scope lang="scss">
+@import './assets/sass/main.scss';
 </style>
