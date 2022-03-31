@@ -66,7 +66,7 @@
 
           </div>
 
-          <div id="CI_area">
+          <div id="">
             <h3>舒適度:{{CI.elementName}}</h3>
             <div v-for="(time, i) in CI.time" :key="i">
               <h4>開始時間:{{time.startTime}}</h4>
@@ -75,9 +75,33 @@
             </div>
           </div>
 
+          <div id="CI_area">
+            <div class="area_wrapper">
+              <div class="area_section" :style="`background:rgba(232, 168, 124, ${time.parameter.parameterName/40})`"  v-for="(time, i) in CI.time" :key="i">
+
+                <h4 class="area_rating">
+                    <span>舒適度</span>
+                    <span>
+                      {{time.parameter.parameterName}}
+                    </span>
+                </h4>
+
+                <div class="area_time">
+                  <span class="area_starTime">{{time.startTime}}</span>
+                  <span>|</span>
+                  <span class="area_endTime">{{time.endTime}}</span>
+                </div>
+              </div>
+
+
+            </div>
+
+  <!-- 舒適至悶熱 舒適 稍有寒意至舒適 寒冷至舒適  寒冷至稍有寒意 -->
+
+            </div>
+
 
             <div id="maxT_area">
-                <!-- <h3>最小溫度:{{MinT.elementName}}</h3> -->
                 <div class="area_wrapper">
                   <div class="area_section" :style="`background:rgba(232, 168, 124, ${time.parameter.parameterName/40})`"  v-for="(time, i) in maxT.time" :key="i">
 
