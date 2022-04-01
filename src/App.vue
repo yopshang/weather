@@ -3,14 +3,14 @@
     <mainNav></mainNav>
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-lg-4">
           <twMap
             style="transi"
             :update_tw_map="update_tw_map"
             @get_active="get_active"
           ></twMap>
         </div>
-        <div class="col-12  col-md-8">
+        <div class="col-12  col-lg-8">
           <h1 class="col_title py-4 d-flex justify-content-center">
             {{ title }}-
             <select
