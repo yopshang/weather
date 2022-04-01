@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col-4">
-          <twMap style="transi" @get_active="get_active"></twMap>
+          <twMap style="transi" :update_tw_map="update_tw_map" @get_active="get_active"></twMap>
         </div>
         <div class="col-8">
           <h1 class="col_title py-4 d-flex justify-content-center">{{ title }}-
@@ -192,6 +192,7 @@ export default {
       MinT: {}, //最低溫
       CI: {}, //舒適度
       maxT: {}, //最高溫
+      update_tw_map: ''
     };
   },
   methods: {
@@ -251,6 +252,12 @@ export default {
     CI_number: function () {
       return 10;
     },
+  },
+  watch:{
+    country_name: function(newVal){
+      this.update_tw_map = newVal;
+      this.get_active_data_of_country(newVal);
+    }
   },
   created() {
     this.get_wather_data();

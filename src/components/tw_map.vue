@@ -48,6 +48,12 @@ export default {
       ],
     };
   },
+  props:{
+    'update_tw_map':{
+      type: String,
+      default: ''
+    }
+  },
   components: {},
   methods: {
     init_map() {
@@ -143,6 +149,18 @@ export default {
     get_active(country){
       // console.log(country);
       this.$emit('get_active', country); 
+    }
+  },
+  watch:{
+    update_tw_map: function(newVal){
+      var country_data = this.country_data;
+      var all_path = document.querySelectorAll("path");
+      this.clear_all_active(all_path);
+      country_data.forEach(item=>{
+        if(item.name == newVal){
+          document.getElementById(item.id).classList.add("active")
+        }
+      })
     }
   },
   mounted() {
