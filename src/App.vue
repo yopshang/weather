@@ -7,8 +7,18 @@
           <twMap style="transi" @get_active="get_active"></twMap>
         </div>
         <div class="col-8">
-          <h1 class="col_title py-4">{{ title }}-{{ country_name }}</h1>
+          <h1 class="col_title py-4 d-flex justify-content-center">{{ title }}-
+          <select v-model="country_name" class="form-select country_select" aria-label="Default select example">
+            <option selected disabled>選擇縣市</option>
+            <option v-for="(country, i) in countries" :key="i" :value="country.locationName">{{country.locationName}}</option>
+          </select>
+            
+            <!-- {{ country_name }} -->
+
+          </h1>
           
+
+
           <div class="row">
             <div class="col-5" id="maxT_area">
               <div class="area_wrapper">
@@ -250,7 +260,10 @@ export default {
 
 <style lang="scss">
 @import "./assets/sass/main.scss";
-.col_title {
-  text-align: center;
-}
+  .col_title {
+    text-align: center;
+  }
+  .country_select {
+    max-width: 215px;
+  }
 </style>
