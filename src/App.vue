@@ -228,11 +228,11 @@ export default {
     },
     period(endTime){
       if (endTime.includes('18:00:00')){
-        return '中午至晚上'
+        return '中午至晚上';
       } else if(endTime.includes('06:00:00')){
-        return '晚上至清晨'
+        return '晚上至清晨';
       } else {
-        return '清晨至中午'
+        return '清晨至中午';
       }
     }
   },
