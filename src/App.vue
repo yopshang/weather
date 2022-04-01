@@ -7,20 +7,25 @@
           <twMap style="transi" @get_active="get_active"></twMap>
         </div>
         <div class="col-8">
-          <h1>{{ title }}</h1>
-          <h2>{{ country_name }}</h2>
+          <h1 class="col_title py-4">{{ title }}-{{ country_name }}</h1>
           
           <div class="row">
-            <div class="col-4" id="maxT_area">
+            <div class="col-5" id="maxT_area">
               <div class="area_wrapper">
                 <div
                   class="area_section"
-                  :style="`background:rgba(232, 168, 124, ${
+                  :style="`background:rgba(226, 125, 95, ${
                     time.parameter.parameterName / 40
                   })`"
                   v-for="(time, i) in maxT.time"
                   :key="i"
                 >
+                  <div class="area_time">
+                    <span class="area_starTime">{{ time.startTime }}</span>
+                    <span>|</span>
+                    <span class="area_endTime">{{ period(time.endTime)}}</span>
+                  </div>
+
                   <h4 class="area_rating">
                     <span>最高溫度</span>
                     <span>
@@ -41,11 +46,11 @@
               </div>
             </div>
 
-            <div class="col-4" id="MinT_area">
+            <div class="col-2 p-0" id="MinT_area">
               <div class="area_wrapper">
                 <div
                   class="area_section"
-                  :style="`background:rgba(232, 168, 124, ${
+                  :style="`background:rgba(226, 125, 95, ${
                     time.parameter.parameterName / 40
                   })`"
                   v-for="(time, i) in MinT.time"
@@ -71,7 +76,7 @@
               </div>
             </div>
 
-            <div class="col-4" id="POP_area">
+            <div class="col-2 p-0" id="POP_area">
               <div class="area_wrapper">
                 <div
                   class="area_section"
@@ -92,43 +97,44 @@
                       }}
                     </span>
                   </h4>
-                  <div class="area_time">
+                  <!-- <div class="area_time">
                     <span class="area_starTime">{{ time.startTime }}</span>
                     <span>|</span>
                     <span class="area_endTime">{{ time.endTime }}</span>
-                  </div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="col" id="wx_area">
+              <!-- <h3>氣候:{{ wx.elementName }}</h3> -->
+              <div class="area_wrapper">
+                <div
+                  class="area_section"
+                  :style="`background:rgba(0, 102, 204, ${
+                    time.parameter.parameterName / 100
+                  })`"
+                  v-for="(time, i) in wx.time"
+                  :key="i"
+                >
+                  <h4 class="area_rating">
+                    <span>氣候</span>
+                    <span>{{ time.parameter.parameterName }}</span>
+                    <span>{{ time.parameter.parameterValue }}</span>
+                  </h4>
+
+                  <!-- <div class="area_time">
+                    <span class="area_starTime">{{ time.startTime }}</span>
+                    <span>|</span>
+                    <span class="area_endTime">{{ time.endTime }}</span>
+                  </div> -->
                 </div>
               </div>
             </div>
           </div>
 
-          <div id="wx_area">
-            <h3>氣候:{{ wx.elementName }}</h3>
-            <div class="area_wrapper">
-              <div
-                class="area_section"
-                :style="`background:rgba(0, 102, 204, ${
-                  time.parameter.parameterName / 100
-                })`"
-                v-for="(time, i) in wx.time"
-                :key="i"
-              >
-                <h4 class="area_rating">
-                  <span>氣候</span>
-                  <span>{{ time.parameter.parameterName }}</span>
-                  <span>{{ time.parameter.parameterValue }}</span>
-                </h4>
 
-                <div class="area_time">
-                  <span class="area_starTime">{{ time.startTime }}</span>
-                  <span>|</span>
-                  <span class="area_endTime">{{ time.endTime }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="CI_area">
+          <!-- <div id="CI_area">
             <div class="area_wrapper">
               <div
                 class="area_section"
@@ -150,7 +156,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -220,6 +226,15 @@ export default {
         }
       });
     },
+    period(endTime){
+      if (endTime.includes('18:00:00')){
+        return '中午至晚上'
+      } else if(endTime.includes('06:00:00')){
+        return '晚上至清晨'
+      } else {
+        return '清晨至中午'
+      }
+    }
   },
   computed: {
     // 舒適至悶熱 舒適 稍有寒意至舒適 寒冷至舒適  寒冷至稍有寒意
@@ -235,4 +250,7 @@ export default {
 
 <style lang="scss">
 @import "./assets/sass/main.scss";
+.col_title {
+  text-align: center;
+}
 </style>
