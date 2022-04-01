@@ -30,7 +30,7 @@
         text-align: center;
         display: flex;
         flex-direction: column;
-        span {
+        span:nth-child(1){
           white-space: nowrap;
         }
       }

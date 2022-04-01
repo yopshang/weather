@@ -77,7 +77,7 @@
 
           <div id="CI_area">
             <div class="area_wrapper">
-              <div class="area_section" :style="`background:rgba(232, 168, 124, ${time.parameter.parameterName/40})`"  v-for="(time, i) in CI.time" :key="i">
+              <div class="area_section" :style="`background: linear-gradient(90deg, rgba(232, 168, 124, 0.4) ${CI_number}%, rgba(0, 102, 204, 0.4) ${100-CI_number}%);`"  v-for="(time, i) in CI.time" :key="i">
 
                 <h4 class="area_rating">
                     <span>舒適度</span>
@@ -95,8 +95,6 @@
 
 
             </div>
-
-  <!-- 舒適至悶熱 舒適 稍有寒意至舒適 寒冷至舒適  寒冷至稍有寒意 -->
 
             </div>
 
@@ -199,6 +197,12 @@ export default {
       })
     }
   },
+  computed: {
+    // 舒適至悶熱 舒適 稍有寒意至舒適 寒冷至舒適  寒冷至稍有寒意
+    CI_number: function(){
+      return 90
+    }
+  }, 
   created(){
     this.get_wather_data();
   }
