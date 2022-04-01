@@ -157,6 +157,7 @@ export default {
   height: 1000px;
   fill: transparent;
   stroke: black;
+  transform: translateX(-35%);
 }
 #map path {
   transition: all 0.3s;
