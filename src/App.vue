@@ -3,37 +3,52 @@
     <mainNav></mainNav>
     <div class="container">
       <div class="row">
-        <div class="col-4">
-          <twMap style="transi" :update_tw_map="update_tw_map" @get_active="get_active"></twMap>
+        <div class="col-md-4">
+          <twMap
+            style="transi"
+            :update_tw_map="update_tw_map"
+            @get_active="get_active"
+          ></twMap>
         </div>
-        <div class="col-8">
-          <h1 class="col_title py-4 d-flex justify-content-center">{{ title }}-
-          <select v-model="country_name" class="form-select country_select" aria-label="Default select example">
-            <option selected disabled>選擇縣市</option>
-            <option v-for="(country, i) in countries" :key="i" :value="country.locationName">{{country.locationName}}</option>
-          </select>
-            
+        <div class="col-12  col-md-8">
+          <h1 class="col_title py-4 d-flex justify-content-center">
+            {{ title }}-
+            <select
+              v-model="country_name"
+              class="form-select country_select"
+              aria-label="Default select example"
+            >
+              <option selected disabled>選擇縣市</option>
+              <option
+                v-for="(country, i) in countries"
+                :key="i"
+                :value="country.locationName"
+              >
+                {{ country.locationName }}
+              </option>
+            </select>
+
             <!-- {{ country_name }} -->
-
           </h1>
-          
-
 
           <div class="row">
             <div class="col-5" id="maxT_area">
               <div class="area_wrapper">
                 <div
                   class="area_section"
-                  :style="`background:rgba(226, 125, 95, ${
+                  :style="`background: linear-gradient(180deg,
+                  rgba(226, 125, 95, ${
                     time.parameter.parameterName / 40
-                  })`"
+                  }), white
+                  )
+                  `"
                   v-for="(time, i) in maxT.time"
                   :key="i"
                 >
                   <div class="area_time">
                     <span class="area_starTime">{{ time.startTime }}</span>
                     <span>|</span>
-                    <span class="area_endTime">{{ period(time.endTime)}}</span>
+                    <span class="area_endTime">{{ period(time.endTime) }}</span>
                   </div>
 
                   <h4 class="area_rating">
@@ -60,9 +75,13 @@
               <div class="area_wrapper">
                 <div
                   class="area_section"
-                  :style="`background:rgba(226, 125, 95, ${
+                  :style="`background:
+                  
+                  linear-gradient(180deg,
+                  rgba(226, 125, 95, ${
                     time.parameter.parameterName / 40
-                  })`"
+                  }), white
+                  )`"
                   v-for="(time, i) in MinT.time"
                   :key="i"
                 >
@@ -90,9 +109,11 @@
               <div class="area_wrapper">
                 <div
                   class="area_section"
-                  :style="`background:rgba(0, 102, 204, ${
+                  :style="`background:
+                  linear-gradient(180deg,
+                  rgba(0, 102, 204, ${
                     time.parameter.parameterName / 100
-                  })`"
+                  }), white)`"
                   v-for="(time, i) in POP.time"
                   :key="i"
                 >
@@ -143,7 +164,6 @@
             </div>
           </div>
 
-
           <!-- <div id="CI_area">
             <div class="area_wrapper">
               <div
@@ -192,7 +212,7 @@ export default {
       MinT: {}, //最低溫
       CI: {}, //舒適度
       maxT: {}, //最高溫
-      update_tw_map: ''
+      update_tw_map: "",
     };
   },
   methods: {
@@ -237,15 +257,15 @@ export default {
         }
       });
     },
-    period(endTime){
-      if (endTime.includes('18:00:00')){
-        return '中午至晚上';
-      } else if(endTime.includes('06:00:00')){
-        return '晚上至清晨';
+    period(endTime) {
+      if (endTime.includes("18:00:00")) {
+        return "中午至晚上";
+      } else if (endTime.includes("06:00:00")) {
+        return "晚上至清晨";
       } else {
-        return '清晨至中午';
+        return "清晨至中午";
       }
-    }
+    },
   },
   computed: {
     // 舒適至悶熱 舒適 稍有寒意至舒適 寒冷至舒適  寒冷至稍有寒意
@@ -253,11 +273,11 @@ export default {
       return 10;
     },
   },
-  watch:{
-    country_name: function(newVal){
+  watch: {
+    country_name: function (newVal) {
       this.update_tw_map = newVal;
       this.get_active_data_of_country(newVal);
-    }
+    },
   },
   created() {
     this.get_wather_data();
@@ -267,10 +287,10 @@ export default {
 
 <style lang="scss">
 @import "./assets/sass/main.scss";
-  .col_title {
-    text-align: center;
-  }
-  .country_select {
-    max-width: 215px;
-  }
+.col_title {
+  text-align: center;
+}
+.country_select {
+  max-width: 215px;
+}
 </style>

@@ -187,4 +187,9 @@ export default {
     fill: $main_color;
   }
 }
+#TW_map{
+  @media (max-width:1024px) {
+    display: none;
+  }
+}
 </style>
