@@ -9,14 +9,28 @@
         <div class="col-4">
           <h1>{{title}}</h1>
           <h2>{{country_name}}</h2>
-
+          
           <div id="wx_area">
             <h3>氣候:{{wx.elementName}}</h3>
-            <div v-for="(time, i) in wx.time" :key="i">
-              <h4>開始時間:{{time.startTime}}</h4>
-              <h4>結束時間:{{time.endTime}}</h4>
-              <h4>氣候狀態:{{time.parameter.parameterName}}</h4>
-              <h4>氣候程度:{{time.parameter.parameterValue}}</h4>
+            <div class="area_wrapper">
+
+              <div class="area_section"  :style="`background:rgba(0, 102, 204, ${time.parameter.parameterName/100})`" v-for="(time, i) in wx.time" :key="i">
+
+                <h4 class="area_rating">
+                  <span>氣候</span>
+                  <span>{{time.parameter.parameterName}}</span>
+                  <span>{{time.parameter.parameterValue}}</span>
+                </h4> 
+
+
+                <div class="area_time">
+                  <span class="area_starTime">{{time.startTime}}</span>
+                  <span>|</span>
+                  <span class="area_endTime">{{time.endTime}}</span>
+                </div>
+
+              </div>
+
             </div>
           </div>
 
@@ -66,15 +80,6 @@
 
           </div>
 
-          <div id="">
-            <h3>舒適度:{{CI.elementName}}</h3>
-            <div v-for="(time, i) in CI.time" :key="i">
-              <h4>開始時間:{{time.startTime}}</h4>
-              <h4>結束時間:{{time.endTime}}</h4>
-              <h4>最低溫度:{{time.parameter.parameterName}}</h4>
-            </div>
-          </div>
-
           <div id="CI_area">
             <div class="area_wrapper">
               <div class="area_section" :style="`background: linear-gradient(90deg, rgba(232, 168, 124, 0.4) ${CI_number}%, rgba(0, 102, 204, 0.4) ${100-CI_number}%);`"  v-for="(time, i) in CI.time" :key="i">
@@ -98,33 +103,34 @@
 
             </div>
 
+          <div id="maxT_area">
+              <div class="area_wrapper">
+                <div class="area_section" :style="`background:rgba(232, 168, 124, ${time.parameter.parameterName/40})`"  v-for="(time, i) in maxT.time" :key="i">
 
-            <div id="maxT_area">
-                <div class="area_wrapper">
-                  <div class="area_section" :style="`background:rgba(232, 168, 124, ${time.parameter.parameterName/40})`"  v-for="(time, i) in maxT.time" :key="i">
+                  <h4 class="area_rating">
+                      <span>最高溫度</span>
+                      <span>
+                        {{time.parameter.parameterName+'度'+time.parameter.parameterUnit}}
+                      </span>
+                  </h4>
 
-                    <h4 class="area_rating">
-                        <span>最高溫度</span>
-                        <span>
-                          {{time.parameter.parameterName+'度'+time.parameter.parameterUnit}}
-                        </span>
-                    </h4>
-
-                    <div class="area_time">
-                      <span class="area_starTime">{{time.startTime}}</span>
-                      <span>|</span>
-                      <span class="area_endTime">{{time.endTime}}</span>
-                    </div>
+                  <div class="area_time">
+                    <span class="area_starTime">{{time.startTime}}</span>
+                    <span>|</span>
+                    <span class="area_endTime">{{time.endTime}}</span>
                   </div>
-
-
                 </div>
 
 
+              </div>
 
-            </div>
+
 
           </div>
+
+        </div>
+
+          
 
       </div>
 
@@ -139,7 +145,7 @@ export default {
   name: 'App',
   components: {
     mainNav,
-    twMap 
+    twMap,
   },
   data(){
     return {
