@@ -25,7 +25,7 @@
             <li class="nav-item">
               <router-link
                 to="/about"
-                class="nav-link active"
+                class="nav-link"
                 aria-current="page"
                 >天氣預報
               </router-link>
@@ -89,4 +89,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import "../assets/sass/main.scss";
+.router-link-active {
+  color: rgba(0,0,0,.55);
+}
+// color: rgba(0,0,0,.55);
 </style>
