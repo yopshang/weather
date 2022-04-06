@@ -216,6 +216,7 @@ export default {
       this.get_active_data_of_country(country);
     },
     get_wather_data() {
+      console.log('first time');
       var api =
         "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-515CB401-8DE7-4F50-A18F-477C0E6DB913";
       this.axios.get(api).then((res) => {
@@ -223,6 +224,9 @@ export default {
         if (res.data.success) {
           this.country_weather_handler(weather_data.records.location);
           this.country_title_handler(weather_data.records.datasetDescription);
+          if(this.countries.length != 0){
+            this.get_active('臺北市'); // 第一次載入要跑這邊
+          }
         } else {
           alert("網路連線錯誤");
           window.location.reload();
